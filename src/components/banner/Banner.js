@@ -5,8 +5,10 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import {format} from 'date-fns'
 import './Banner.css'
+import {Link} from 'react-router-dom'
 
-export default function Banner() {
+export default function Banner(hotelList) {
+    const [search, setSearch] = useState('')
     const [openDate,setOpenDate] = useState (false)
     const [date,setDate] = useState ([
         {
@@ -36,8 +38,12 @@ export default function Banner() {
             <div className='bannerContainer'>
                 <h3 className='name'>HarmonyBooking.com</h3>
                 <div className='bannerItems'>
-                    <button className='login'>Login</button>
+                 <Link to = '/login'> 
+                 <button className='login'>Login</button>
+                 </Link>
+                 <Link to = '/SignUp'>
                     <button className='signUp'>Sign Up</button>
+                    </Link>
                 </div>
             </div>
             <h1 className='headerTitle'>Welcome to HarmonyBooking</h1>
@@ -45,7 +51,13 @@ export default function Banner() {
             <div className='searchBar'>
                 <div className='searchBarItems'>
                     <FaBed className='bannerIcon'/>
-                    <input type='text' placeholder='Looking for a hotel?' className='searchInput'/>
+                    <input type='text' placeholder='Looking for a hotel?' className='searchInput'onChange={(e)=>setSearch(e.target.value)}/>
+                    {/* {hotelList.filter((item)=> {
+                        if (search === '')
+                        {return item} 
+                        else if (item.newHotel.toLowerCase().includes(search.toLowerCase())){
+                        return item}
+                         } ) } */}
                 </div>
                 <div className='searchItems'>
                     <FaRegCalendarAlt className='bannerIcon'/>
